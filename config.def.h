@@ -1,7 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "Sans 8";
+//static const char font[]            = "Sans 8";
+static const char font[]            = "WenQuanYi Micro Hei Mono 11";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
@@ -13,14 +14,14 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const Bool showsystray       = True;     /* False means no systray */
 static const Bool showbar           = True;     /* False means no bar */
-static const Bool topbar            = True;     /* False means bottom bar */
+static const Bool topbar            = False;     /* False means bottom bar */
 static const Bool statusmarkup      = True;     /* True means use pango markup in status message */
 /*   Display modes of the tab bar: never shown, always shown, shown only in */
 /*   monocle mode in presence of several windows.                           */
 /*   Modes after showtab_nmodes are disabled                                */
 enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always};
 static const int showtab            = showtab_auto; /* Default tab bar show mode */
-static const Bool toptab            = False;    /* False means bottom tab bar */
+static const Bool toptab            = True;    /* False means bottom tab bar */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -28,7 +29,7 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
 };
 
 /* layout(s) */
@@ -60,23 +61,35 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "uxterm", NULL };
+//static const char *termcmd[]  = { "uxterm", NULL };
+static const char *termcmd[]  = { "xterm", NULL };
+static const char *volume_raise[] = {"amixer", "-q", "sset", "Master", "5%+", "unmute"};
+static const char *volume_lower[] = {"amixer", "-q", "sset", "Master", "5%-", "unmute"};
+static const char *volume_mute[] = {"amixer", "-q", "sset", "Master", "toggle"};
+static const char *sdcv_lookup[] = {"sdcv_notify.sh"};
+static const char *sdcv_input[] = {"sdcv_input.sh"};
+
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_equal,  spawn,          {.v = volume_raise} },
+	{ MODKEY,                       XK_minus,  spawn,          {.v = volume_lower} },
+	{ MODKEY,                       XK_BackSpace,spawn,        {.v = volume_mute} },
+	{ MODKEY,                       XK_d,      spawn,          {.v = sdcv_lookup} },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = sdcv_input} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_w,      tabmode,        {-1} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
