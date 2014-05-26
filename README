@@ -1,3 +1,22 @@
+The Configuration Made
+======================
+This section describe the configurations I've made, mostly for myself.
+
+The 'master' branch is for applying patches. Other configurations are provided
+in the 'dwm-config' branch.
+
+Patches Applied
+---------------
+Dwm provides a lot of patches, most of them however conflict with each other,
+this due to they are all generated from the barebone of dwm.
+
+This repo applies the following patches:
+1. pango -- support xft and color texts, etc.
+2. systray -- somehow makes life easier to have it.
+3. tab -- transform the monocle layout into "tabbed".
+4. autostart -- so that we can organize autostart apps in a script.
+5. bstack -- sometimes I need the master to span horizontally.
+
 dwm - dynamic window manager
 ============================
 dwm is an extremely fast, small, and dynamic window manager for X.
