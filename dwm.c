@@ -908,8 +908,10 @@ drawbar(Monitor *m) {
 	}
 	else
 		dc.x = m->ww;
+
 	if((dc.w = dc.x - x) > bh) {
 		dc.x = x;
+                /*
 		if(m->sel) {
 		  //			col = m == selmon ? dc.sel : dc.norm;
 		  //	drawtext(dc.drawable, m->sel->name, col, False);
@@ -917,6 +919,7 @@ drawbar(Monitor *m) {
 			drawsquare(m->sel->isfixed, m->sel->isfloating, False, col);
 		}
 		else
+                */
 		  drawtext(dc.drawable, dc.xft.drawable, NULL, dc.norm, False);
 	}
 	XCopyArea(dpy, dc.drawable, m->barwin, dc.gc, 0, 0, m->ww, bh, 0, 0);
