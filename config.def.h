@@ -67,6 +67,7 @@ static const char *volume_lower[] = {"amixer", "-q", "sset", "Master", "5%-", "u
 static const char *volume_mute[] = {"amixer", "-q", "sset", "Master", "toggle"};
 static const char *sdcv_lookup[] = {"sdcv_notify.sh"};
 static const char *sdcv_input[] = {"sdcv_input.sh"};
+static const char *screensaver_lock[] = {"xscreensaver_lock.sh"};
 
 
 static Key keys[] = {
@@ -78,6 +79,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_BackSpace,spawn,        {.v = volume_mute} },
 	{ MODKEY,                       XK_d,      spawn,          {.v = sdcv_lookup} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = sdcv_input} },
+	{ Mod1Mask|ControlMask,         XK_l,      spawn,          {.v = screensaver_lock} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_w,      tabmode,        {-1} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
