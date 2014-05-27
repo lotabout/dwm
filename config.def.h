@@ -9,7 +9,7 @@ static const char normfgcolor[]     = "#bbbbbb";
 static const char selbordercolor[]  = "#005577";
 static const char selbgcolor[]      = "#005577";
 static const char selfgcolor[]      = "#eeeeee";
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const Bool showsystray       = True;     /* False means no systray */
@@ -20,7 +20,7 @@ static const Bool statusmarkup      = True;     /* True means use pango markup i
 /*   monocle mode in presence of several windows.                           */
 /*   Modes after showtab_nmodes are disabled                                */
 enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always};
-static const int showtab            = showtab_auto; /* Default tab bar show mode */
+static const int showtab            = showtab_always; /* Default tab bar show mode */
 static const Bool toptab            = True;    /* False means bottom tab bar */
 
 /* tagging */
